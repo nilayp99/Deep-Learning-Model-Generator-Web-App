@@ -1,0 +1,109 @@
+{% block graph %}
+<script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function() {
+  var instances = M.AutoInit();
+});
+
+$("#model_form_btn").click(function(event){
+	// event.preventDefault();
+	// $("#model_form :input").prop("disabled", true);
+	// $("#model_form_btn").attr("disabled", true);
+	// $("#add").attr("disabled", true);
+	// $("#sub").attr("disabled", true);
+
+	var id = setInterval(refresh, 1000); // start a timer to periodically refresh the chart
+  	var tempg = 1000;  // initialize a variable to store the last epoch number received from the server
+  	var ep = document.getElementById("noepochs").value;
+  	var ibd = 1
+	function refresh() {
+	    $.ajax({
+	    	method:"GET", // make a GET request to this URL to get new data for the chart
+	        url: "{% url 'live_graph' %}",
+	        success: function updateChart(data){
+	        	if(data.epoch != tempg){ // if the epoch number has changed, update the chart
+
+	        		ibd = ibd + (100/(data.epoch+1)) // change progress bar width as per epoch
+	        		$("#progressBar").css("width", ibd + "%");
+
+	        		chart1.data.datasets[0].data.push(data.loss);
+					chart1.data.datasets[1].data.push(data.val_loss);
+					chart1.data.labels.push(data.epoch);
+					chart1.update();
+					
+					tempg = data.epoch; // store the new epoch number
+	        	}
+	        	if((ep-1) == data.epoch){
+	        		clearInterval(id);
+	    //     		$("#model_form :input").prop("disabled", false);
+					// $("#model_form_btn").attr("disabled", false);
+					// $("#add").attr("disabled", false);
+					// $("#sub").attr("disabled", false);
+	        	}
+			}
+	        // error: function(error_data){
+	        // 	console.log("error");
+	        // 	console.log(error_data);
+	        // }
+	    });
+	}
+});
+
+var ctx1 = document.getElementById('Chart1').getContext('2d');
+var chart1 = new Chart(ctx1, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'loss',
+            fill: false,
+            borderWidth: 1,
+            lineTension: 0,
+            borderColor: 'orange',
+            data: []
+        },
+        {
+            label: 'val_loss',
+            fill: false,
+            borderWidth: 1,
+            lineTension: 0,
+            borderColor: 'blue',
+            data: []
+        }
+        ]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+// var detect = 'scatter'; 
+
+// if ($("#barg").is(":checked")) {
+//    detect = 'bar';
+//    chart2.update();
+// }
+
+// var ctx2 = document.getElementById('Chart2').getContext('2d');
+// var chart2 = new Chart(ctx2, {
+//     // The type of chart we want to create
+//     type: detect,
+
+//     // The data for our dataset
+//     data: {
+//         labels: [1,2,3],
+//         datasets: [{
+//             data: [1,2,3]
+//         },
+//         ]
+//     },
+
+//     // Configuration options go here
+//     options: {}
+// }); 
+
+</script>
+{% endblock %}

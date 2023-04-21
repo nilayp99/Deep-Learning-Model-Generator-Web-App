@@ -1,0 +1,59 @@
+select {
+	    background-color: rgba(255,255,255,0.9);
+	    width: 100%;
+	    padding: 5px;
+	    border: 1px solid #f2f2f2;
+	    border-radius: 2px;
+	    height: fit-content;
+	}
+
+.tabs .tab a{
+	color:#000;
+} /*Black color to the text*/
+
+.tabs .tab a:hover {
+    background-color:#eee;
+    color:#000;
+} /*Text color on hover*/
+
+.tabs .tab a.active {
+    background-color:#888;
+    color:#000;
+} /*Background and text color when a tab is active*/
+
+.tabs .indicator {
+    background-color:#000;
+} /*Color of underline*/
+
+body
+{
+    position: fixed; 
+    overflow-y: scroll;
+    width: 100%;
+}
+select {
+    background-color: rgba(255,255,255,0.9);
+    width: 100%;
+    padding: 5px;
+    border: 1px solid orange;
+    border-radius: 4px;
+    height: fit-content;
+    font-size: 10px;
+}
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+	font-size: 10px;
+	height: 31px;
+	border-bottom: 1px solid orange;
+	color: grey;
+	width: inherit;
+	padding-right: 0px;
+}
+/* label focus color */
+ .input-field input:focus + label {
+   color: black !important;
+ }
+ /* label underline focus color */
+ .row .input-field input:focus {
+   border-bottom: 1px solid black !important;
+   box-shadow: 0 1px 0 0 black !important
+ }

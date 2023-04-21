@@ -1,0 +1,152 @@
+<!DOCTYPE html> 
+<html> 
+	<head>
+		{% load staticfiles %}
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+		    $('.modal').modal();
+		  });
+
+			// $("#model_form_btn").click(function(event){
+			// 	event.preventDefault();
+			// }
+		</script>
+		<link rel="prefetch" href="{% static 'images/RNN_Model.gif' %}"> 
+
+ 	</head>
+	<body>
+        <nav class="nav-wrapper orange">
+        	<span>&nbsp;&nbsp;&nbsp;</span>
+            <a href="" class="brand-logo">Machine Learning using GUI</a>
+            <a href="" class="sidenav-trigger" data-target="mobile-menu">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="train_models.html" class="rounded-corners">Train Models</a></li>
+                <li><a href="#About" class="rounded-corners">About</a></li>
+                <li><a href="#login" class="btn grey waves-effect waves-light modal-trigger rounded-corners"><i class="material-icons right ">account_circle</i>Login</a></li>
+            </ul>
+            <ul class="sidenav grey lighten-2" id="mobile-menu">
+                <li><a href="train_models.html" class="">Train Models</a></li>
+                <li><a href="#" class="">About</a></li>
+                <li><a href="#" class="btn grey waves-effect waves-light left-align"><i class="material-icons right ">account_circle</i>Login</a></li>
+            </ul>
+        </nav>
+
+		<div class="row">
+			<div class="col s3">
+			 <div class="card" style="height:675px;">
+			 	<div id="var_content">
+			<div id="Dense_card">
+				<div class="card-content grey-text">
+            		<span class="card-title">Dense</span>
+            		<div class="card-image">
+              			<img src="{% static 'images/Dense_Model.gif' %}" />
+            		</div>
+            		<div class="card-panel  white " style="height:470px;">
+              			<span class="grey-text" >
+						    Dense Neural Network have the same formulas as the linear layers wx+b, but
+						    the end result is passed through a non-linear function called Activation
+						    function. Each non linear activation function can be decomposed to Taylor
+						    series thus producing a polynomial of a degree higher than 1. By stacking
+						    several dense non-linear layers (one after the other) we can create higher
+						    and higher order of polynomials. For instance, let’s imagine we use the
+						    following non-linear activation function: (y=x²+x). By stacking 2 instances
+						    of it, we can generate a polynomial of degree 4, having (x⁴, x³, x², x)
+						    terms in it. Thus the more layers we add, the more complex mathematical
+						    functions we can model.
+              			</span>
+            		</div>
+          		</div>
+          	</div>
+      		</div>
+			  </div>
+			</div>
+			<div class="col s6">
+			  	<div class="card" style="height:675px;">
+			    	<div class="card-content grey-text">
+			    		<span class="card-title" style="margin-bottom: 40px">Work Space</span>
+			    		<div style="position: absolute; top: 85px; right: 35px;">
+							<button class="btn-floating waves-effect waves-light grey" id="add" onclick="add_layer()" >+</button>
+							<button class="btn-floating waves-effect waves-light grey" id="sub" onclick="sub_layer()">-</button>
+						</div>
+						{% block formdl %}
+							{% include "main/includes/formdl.html"%}
+						{% endblock %}
+						<button form="model_form" class="waves-effect waves-light btn orange" type="submit" id="model_form_btn" name="model_form" style="position: absolute; bottom: 20px; right: 30px;">Train</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col s3">
+			  	<div class="card" style="height:675px;">
+			      	<div class="card-tabs">
+			      	<ul class="tabs tabs-fixed-width tab-demo z-depth-1 orange">
+			        <li class="tab">
+			        	<a href="#mchart">Model</a></li>
+			        <!-- <li class="tab">
+			        	<a href="#dchart">Dataset</a></li>
+			      	</ul> -->
+			      	</div>
+			      	<div class="card-content">
+			      		<div id="mchart">
+			      			<canvas url-endpoint='{% url "live_graph" %}' style="height: 240px; width:100%;" id="Chart1"></canvas>
+			      			<div class="progress" style=" background-color: lightgrey;">
+							      <div class="determinate" style="width: 0%; background-color: orange;"></div>
+							  </div>
+							  <div class="card-panel  white " style="height:300px;">
+              			<span class="grey-text" >
+              				The above graph shows loss and val loss VS epochs the purpose is to prevent ovefitting as you can see the line merging at the end<br><br><br>
+						    val loss : Validation set Loss<br>
+						    loss : Training set Loss<br>
+						    accuracy : 1 - loss<br>
+						    validation acc : 1 - val loss 
+              			</span>
+            		</div>
+			      			<a class="waves-effect waves-light btn modal-trigger orange" href="#modal1" style="position: absolute; bottom: 20px; right: 20px;"><i class="material-icons">arrow_upward</i></a>
+			      			<a class="waves-effect waves-light btn modal-trigger orange" href="{% static 'models/model.h5' %}" style="position: absolute; bottom: 20px; right: 80px;" download><i class="material-icons">arrow_downward</i></a>
+							  <!-- Modal Structure -->
+							  <div id="modal1" class="modal">
+							    <div class="modal-content">
+							      <h6>Upload Dataset</h6>
+									<form name="data_form" id="data_form" method="post" enctype="multipart/form-data">
+									    {% csrf_token %}
+									    <br>
+									    <input form="data_form" type="file" id="myfile" accept=".npz" name="myfile"/>
+									    <br>
+									    <br>
+									    <button form="data_form" name="data_form" id="data_form_btn" type="submit">Upload</button>
+									</form>
+							    </div>
+							  </div>
+			      		</div>
+					  	<!-- <div id="dchart">
+					  		<canvas url-endpoint='{% url "live_graph" %}' style="height: 240px; width:100%;" id="Chart2"></canvas>
+					  		<hr>
+					  		<div>
+						  		<label id="bar" style="position:relative; left:45px; top:5px;">
+						        	<input id="barg" name="barg" type="radio"/>
+						        	<span>Bar</span>
+						      	</label>
+						      	<label id="scatter" style="position:relative; left:130px; top:5px;">
+						        	<input id="scatterg" name="scatterg" type="radio" checked />
+						        	<span>Scatter</span>
+						      	</label>
+						  	</div>
+					  	</div> -->
+					</div>
+			    </div>
+			</div>
+		</div>
+		{% block graph %}
+			{% include "main/includes/graph.html"%}
+		{% endblock %} 
+	</body>
+</html>

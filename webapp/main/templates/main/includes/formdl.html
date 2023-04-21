@@ -1,0 +1,75 @@
+{% block formdl %}
+<form method="post" enctype="multipart/form-data"  id="model_form" name="model_form" style="margin-left: 14px;" onsubmit="yourJsFunction();return false">
+	{% csrf_token %}
+	<div id='content'>
+		<div class="row" id="inputl" style="margin-bottom: -22.41px;">
+			<div class="input-field col">
+				<input value="784" type="number" max="99999" min="1" name="inputlx" id="inputlx" style="text-align:center;" required>
+				<label class="active">Input</label>
+			</div>
+		</div>
+	</div>
+	<div class="row" id="layer0" style="margin-bottom: -22.41px;">
+		<!-- <br><label>Output layer</label><br> -->
+		<br>
+		<div class="col">
+			<label id="ltypel">Layer type</label>
+			<select class="browser-default" name="ltype0" id="ltype0" form="model_form" onchange="detect_change(this);" style="text-align:center;">
+				<option value="Dense">Dense</option>
+			</select>
+		</div>
+		<div class="input-field col">
+			<input value="10" type="number" value="60" max="999" min="1" id="lunits0" name="lunits0" form="model_form" style="text-align:center;"/>
+			<label class="active" id="lunitsl0">Units</label>
+		</div>
+		<div class="col">
+			<label id="lactivationl0">Activation</label>
+			<select class="browser-default" id="lactivation0" name="lactivation0" form="model_form" style="text-align:center;">
+				<option value="softmax">Softmax</option>
+				<option value="relu">Relu</option>
+				<option value="tanh">Tanh</option>
+				<option value="sigmoid">Sigmoid</option>
+				<option value="exponential">Exponential</option>
+				<option value="linear">Linear</option>
+			</select>
+		</div>
+	</div>
+	<div class="row" id="modelspecs">
+		<!-- <br><label>Model Parameters</label><br> -->
+		<br>
+		<div class="col">
+			<label>Loss</label>
+			<select class="browser-default" id="modelloss" name="modelloss" form="model_form" style="text-align:center;">
+				<option value="mean_squared_error">mean_squared_error</option>
+				<option value="mean_squared_logarithmic_error">mean_square_logarithmic_error</option>
+				<option value="mean_absolute_error">mean_absolute_error</option>
+				<option value="categorical_crossentropy">categorical_crossentropy</option>
+				<option value="sparse_categorical_crossentropy">sparse_categorical_crossentropy</option>
+				<option value="binary_crossentropy">binary_crossentropy</option>
+				<option value="poisson">poisson</option>
+				<option value="logcosh">logcosh</option>
+			</select>
+		</div>
+		<div class="col">
+			<label>Optimizer</label>
+			<select class="browser-default" id="modeloptimizer" name="modeloptimizer" form="model_form" onchange="detectopt(this);" style="text-align:center;">
+				<option value="adam">Adam</option>
+				<option value="sgd">SGD</option>
+				<option value="rmsprop">RMSprop</option>
+				<option value="adadelta">Adadelta</option>
+				<option value="adamax">Adamax</option>
+				<option value="adagrad">Adagrad</option>
+				<option value="nadam">Nadam</option>
+			</select>
+		</div>
+		<div class="input-field col">
+			<input name="modellr" id="modellr" step=".001" min="0.0" max="1.0" type="number" value='0.001' style="text-align:center;">
+			<label class="active">DLR</label>
+		</div>
+		<div class="input-field col">
+			<input name="noepochs" id="noepochs" step="1" min="1" max="1000" type="number" value='1' style="text-align:center;">
+			<label class="active">Epochs</label>
+		</div>
+	</div>
+</form>
+{% endblock %}

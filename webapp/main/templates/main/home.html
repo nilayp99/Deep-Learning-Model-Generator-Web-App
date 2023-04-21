@@ -1,0 +1,415 @@
+
+<html>
+<head>
+    {% load staticfiles %}
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+ 
+    <title>Machine Learning</title>
+    <style>
+        header{
+            background: url({% static 'images/image.jpg' %});
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 1000px;
+        }
+        /*@media screen and (max-width:670px){
+            header{
+                min-height: 500px;
+            }
+        }*/
+        .rounded-corners{
+            border-radius: 10px;
+            
+        }
+        section{
+            padding-top: 4vw;
+            padding-bottom: 4vw;
+            
+            
+        }
+        .section_colour{
+            background-color: lightgrey;
+             /* background-image: url(section2.jpg);  */
+            background-size: cover;
+            background-position: center; 
+            
+
+        }
+        #locator{
+            position: absolute;
+            visibility: visible;
+            top: 700px;
+            left: 16%;
+
+        
+        }
+
+    </style>
+    
+</head>
+<body>
+    
+    <header>
+        <nav class="nav-wrapper orange">
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <a href="" class="brand-logo">Machine Learning using GUI</a>
+            <a href="" class="sidenav-trigger" data-target="mobile-menu">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="{% url 'gen_model' %}" class="rounded-corners">Train Models</a></li>
+                <li><a href="#About" class="rounded-corners">About</a></li>
+                <li><a href="#login" class="btn grey waves-effect waves-light modal-trigger rounded-corners"><i class="material-icons right ">account_circle</i>Login</a></li>
+            </ul>
+            <ul class="sidenav grey lighten-2" id="mobile-menu">
+                <li><a href="train_models.html" class="">Train Models</a></li>
+                <li><a href="#" class="">About</a></li>
+                <li><a href="#" class="btn grey waves-effect waves-light left-align"><i class="material-icons right ">account_circle</i>Login</a></li>
+            </ul>
+        </nav>
+         <!-- Getting started button -->
+        <div class="container " id="locator">
+            <a href="#Starter" class="waves-effect waves-light btn orange" >Get Started</a>
+        </div>
+    </div>         
+            
+
+    </header>
+
+            <!-- login pop box -->
+          
+          <div id="login" class="modal rounded-corners">
+            <span class="modal-close"> <i class="material-icons left">close</i></span>
+            <div class="modal-content center">
+              <h4>Login Form</h4>
+              <br>
+          
+              <form action="#">
+          
+                <div class="input-field ">
+                  <i class="material-icons prefix rounded-corners">person</i>
+                  <input type="text" id="name">
+                  <label for="name">Username</label>
+                </div>
+                <br>
+          
+                <div class="input-field">
+                  <i class="material-icons prefix rounded-corners">lock</i>
+                  <input type="password" id="pass">
+                  <label for="pass">Password</label>
+                </div>
+                <br>
+          
+                <div class="left" style="margin-left:20px;">
+                  <input type="checkbox" id="check">
+                  <label for="check">Remember Me</label>
+                </div>
+                <br>
+                
+                <input type="submit" value="Login" class="btn btn-large">
+                
+              </form>
+            </div>
+          </div>
+         
+         
+         
+    <!-- Section to choose your learning algorithm -->
+     
+    <section class="section_colour scrollspy " id="Starter">
+        <div class="container">
+        <!-- Row Number 1 -->
+        <div class="row">
+            <div class="col l4 m4 s12 pull-l2">
+                <div class="rounded-corners card sticky-action ">
+                    <div class="card-image">
+                        <img class="activator" src="{% static 'images/GRU_Model.jpeg' %}" alt="" class="responsive-img materialboxed" >
+                        <span class="card-title ">Gated Recurrent Unit</span>
+                        <a class="btn red btn-floating halfway-fab pulse activator">+</a>
+                    </div>
+                    <div class="card-content">
+                        <p></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title">Gated Recurrent Unit<i class="material-icons left">close</i></span>
+                        <p>
+                             Introduced by Cho, et al. in 2014, GRU (Gated Recurrent Unit) aims to solve the vanishing gradient problem which comes with a standard recurrent neural network.
+                             GRU can also be considered as a variation on the LSTM because both are designed similarly and, in some cases, produce equally excellent results.
+                             To solve the vanishing gradient problem of a standard RNN, GRU uses, so-called, update gate and reset gate. Basically, these are two vectors which decide what information should be passed to the output. The special thing about them is that they can be trained to keep information from long ago, without washing it through time or remove information which is irrelevant to the prediction.\
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'gen_model' %}">GRU</a>
+                      </div>
+                </div>
+            </div>
+            <div class="col l4 m4 s12 ">
+                <div class="rounded-corners card sticky-action">
+                    <div class="card-image">
+                        <img class="activator" src="{% static 'images/lstmmodel.gif' %}" alt="" class="responsive-img materialboxed">
+                        <span class="card-title ">LSTM</span>
+                        <a class="btn red btn-floating halfway-fab pulse activator">+</a>
+                    </div>
+                    <div class="card-content">
+                        <p></p>
+                    </div>
+                    <div class="card-reveal">
+                        <!-- <span class="card-title">LSTM<i class="material-icons left">close</i></span> -->
+                        <p>
+                            LSTM Neural Networks, which stand for Long Short-Term Memory, are a particular type of recurrent neural networks that got lot of attention recently within the machine learning community.
+                    In a simple way, LSTM networks have some internal contextual state cells that act as long-term or short-term memory cells.
+                    The output of the LSTM network is modulated by the state of these cells. 
+                    This is a very important property when we need the prediction of the neural network to depend on the historical context of inputs, rather than only on the very last input.
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'gen_model' %}">LSTM</a>
+                      </div>
+                </div>
+            </div>
+            <div class="col l4 m4 s12 push-l2">
+                <div class="rounded-corners card sticky-action">
+                    <div class="card-image">
+                        <img class="activator" src="{% static 'images/CNN_Model.gif' %}">
+                        <span class="card-title ">Convolutional Neural Network</span>
+                        <a class="btn red btn-floating halfway-fab pulse activator">+</a>
+                    </div>
+                    <div class="card-content">
+                        <p> </p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title">Convolutional Neural Network<i class="material-icons left">close</i></span>
+                        <p>
+                            A Convolutional Neural Network (ConvNet/CNN) is a Deep Learning algorithm which can take in an input image, assign importance (learnable weights and biases) to various aspects/objects in the image and be able to differentiate one from the other. The pre-processing required in a ConvNet is much lower as compared to other classification algorithms. While in primitive methods filters are hand-engineered, with enough training, ConvNets have the ability to learn these filters/characteristics.
+							The architecture of a ConvNet is analogous to that of the connectivity pattern of Neurons in the Human Brain and was inspired by the organization of the Visual Cortex. Individual neurons respond to stimuli only in a restricted region of the visual field known as the Receptive Field. A collection of such fields overlap to cover the entire visual area.
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'gen_model' %}">CNN</a>
+                      </div>
+                </div>
+            </div>
+        </div>
+
+        
+    
+        <!-- <div class="row">
+             <div class="col s6 l4">
+                <img src="linear_regression.jpg" alt="" class="responsive-img materialboxed">
+            </div> -->
+            <!-- <div class="col s4 l4  pull-l0.5  card">
+                <h2 class="indigo-text text-darken-4 ">Linear Regrssion</h2>
+                <p>
+                    Simple linear regression is useful for finding relationship between two continuous variables.
+                    One is predictor or independent variable and other is response or dependent variable.
+                    It looks for statistical relationship but not deterministic relationship. 
+                    Relationship between two variables is said to be deterministic if one variable can be accurately expressed by the other. 
+                    For example, using temperature in degree Celsius it is possible to accurately predict Fahrenheit. 
+                    Statistical relationship is not accurate in determining relationship between two variables. 
+                    For example, relationship between height and weight.
+                </p>    
+            </div> -->
+        <!-- </div> -->
+        <!-- <div class="col s6 l5 push-l7">
+                <img src="lstm.jpg" alt="" class="responsive-img materialboxed">
+            </div> -->
+            <!-- <div class="col s6 l4 puch-l8  card">
+                <h2 class="indigo-text text-darken-4">LSTM</h2>
+                <p>
+                    LSTM Neural Networks, which stand for Long Short-Term Memory, are a particular type of recurrent neural networks that got lot of attention recently within the machine learning community.
+                    In a simple way, LSTM networks have some internal contextual state cells that act as long-term or short-term memory cells.
+                    The output of the LSTM network is modulated by the state of these cells. 
+                    This is a very important property when we need the prediction of the neural network to depend on the historical context of inputs, rather than only on the very last input.
+                </p>    
+            </div>
+        </div> -->
+
+        <!-- <div class="row"> -->
+            <!-- <div class="col s6 l4 push-l7">
+                <img src="k-means.jpg" alt="" class="responsive-img materialboxed">
+
+            </div> -->
+            <!-- <div class="col s4 l4 pull-lcenter-align card">
+                <h2 class="indigo-text text-darken-4">K-Means</h2>
+                <p>
+                    K-means clustering is one of the simplest and popular unsupervised machine learning algorithms.
+                    Typically, unsupervised algorithms make inferences from datasets using only input vectors without referring to known, or labelled, outcomes.
+                    A cluster refers to a collection of data points aggregated together because of certain similarities.
+                    You’ll define a target number k, which refers to the number of centroids you need in the dataset. A centroid is the imaginary or real location representing the center of the cluster.
+                    Every data point is allocated to each of the clusters through reducing the in-cluster sum of squares.
+                    In other words, the K-means algorithm identifies k number of centroids, and then allocates every data point to the nearest cluster, while keeping the centroids as small as possible.
+                    The ‘means’ in the K-means refers to averaging of the data; that is, finding the centroid.
+                </p>    
+            </div>
+        </div> -->
+
+<!--         
+        <div class="row">
+            <div class="col s6 l4">
+                <img src="simple_nn.jpg" alt="" class="responsive-img materialboxed">
+            </div> -->
+            <!-- <div class="col s4 l4 push-l1 center-align card">
+                <h2 class="indigo-text text-darken-4">Simple NN</h2>
+                <p>
+                    Simple linear regression is useful for finding relationship between two continuous variables.
+                    One is predictor or independent variable and other is response or dependent variable.
+                    It looks for statistical relationship but not deterministic relationship. 
+                    Relationship between two variables is said to be deterministic if one variable can be accurately expressed by the other. 
+                    For example, using temperature in degree Celsius it is possible to accurately predict Fahrenheit. 
+                    Statistical relationship is not accurate in determining relationship between two variables. 
+                    For example, relationship between height and weight.
+                </p>    
+            </div>
+        </div> -->
+    </div>
+    </section>
+
+
+    <div class="parallax-container">
+        <div class="parallax">
+            <img src="{% static 'images/image2.jpg' %}" alt="" class="responsive-img">
+        </div>
+    </div>
+    <!-- Row number 2 -->
+    <section class="section_colour scrollSpy" >
+        <div class="container">
+        <div class="row">
+            <div class="col l4 m4 s12 pull-l2">
+                <div class="rounded-corners card sticky-action">
+                    <div class="card-image">
+                        <img class="activator" src="{% static 'images/Dense_Model.gif' %}">
+                        <!-- <span class="card-title white-text text-darken-4">Dense Neural Network</span> -->
+                        <a class="btn red btn-floating halfway-fab pulse activator">+</a>
+                    </div>
+                    <div class="card-content">
+                        <p>For 2D data only</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title">Dense Neural Network<i class="material-icons left">close</i></span>
+                        <p>
+                            The name suggests that layers are fully connected (dense) by the neurons in a network layer. Each neuron in a layer receives an input from all the neurons present in the previous layer—thus, they’re densely connected.
+							In other words, the dense layer is a fully connected layer, meaning all the neurons in a layer are connected to those in the next layer.\
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'gen_model' %}">Dense</a>
+                      </div>
+                </div>
+            </div>
+            <div class="col l4 m4 s12 ">
+                <div class="rounded-corners card sticky-action">
+                    <div class="card-image">
+                        <img class="activator" src="{% static 'images/RNN_Model.gif' %}">
+                        <!-- <span class="card-title indigo-text text-darken-4">Simple RNN</span> -->
+                        <a class="btn red btn-floating halfway-fab pulse activator">+</a>
+                    </div>
+                    <div class="card-content">
+                        <p>For 2D data only</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title">Simple RNN<i class="material-icons left">close</i></span>
+                        <p>
+                            Recurrent neural networks are artificial neural networks where the computation graph contains directed cycles. Unlike feedforward neural networks, where information flows strictly in one direction from layer to layer, in recurrent neural networks (RNNs), information travels in loops from layer to layer so that the state of the model is influenced by its previous states. While feedforward neural networks can be thought of as stateless, RNNs have a memory which allows the model to store information about its past computations. This allows recurrent neural networks to exhibit dynamic temporal behavior and model sequences of input-output pairs.
+							Because they can model temporal sequences of input-output pairs, recurrent neural networks have found enormous success in natural language processing (NLP) applications. This includes machine translation, speech recognition, and language modeling. RNNs have also been used in reinforcement learning to solve very difficult problems at a level better than humans. A recent example is AlphaGo, which beat world champion Go player Lee Sedol in 2016.\
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'gen_model' %}">Simple RNN</a>
+                      </div>
+                </div>
+            </div>
+            <div class="col l4 m4 s12 push-l2">
+                <div class="rounded-corners card sticky-action">
+                    <div class="card-image">
+                        <img class="activator" src="{% static 'images/linear_regression.jpg' %}">
+                        <span class="card-title indigo-text text-darken-4">Auto ML</span>
+                        <a class="btn red btn-floating halfway-fab pulse activator">+</a>
+                    </div>
+                    <div class="card-content">
+                        <p>For 2D data only</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title">Auto ML<i class="material-icons left">close</i></span>
+                        <p>
+                            Simple linear regression is useful for finding relationship between two continuous variables.
+                            One is predictor or independent variable and other is response or dependent variable.
+                            It looks for statistical relationship but not deterministic relationship. 
+                            Relationship between two variables is said to be deterministic if one variable can be accurately expressed by the other. 
+                            For example, using temperature in degree Celsius it is possible to accurately predict Fahrenheit. 
+                            Statistical relationship is not accurate in determining relationship between two variables. 
+                            For example, relationship between height and weight.\
+                        </p>
+                    </div> 
+                    <div class="card-action">
+                        <a href="{% url 'gen_model' %}">Auto ML</a>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <div class="parallax-container">
+        <div class="parallax">
+            <img src="{% static 'images/image2.jpg' %}" alt="" class="responsive-img">
+        </div>
+    </div>
+    
+
+    <!-- contact form and About Us-->
+
+    <section class="section  container scrollspy" id="About">
+            <div class="row">
+              <div class="col s12 l5">
+                <h2 class="indigo-text text-darken-4">About Us</h2>
+                <p>Thank you for stopping by on this page we really appreciate your contribution. You can write us here are we will get with you soon.</p>
+                <p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero. Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at lacus congue, suscipit elit nec, tincidunt orci.</p>
+                <p>Mauris dolor augue, vulputate in pharetra ac, facilisis nec libero. Fusce condimentum gravida urna, vitae scelerisque erat ornare nec.</p>
+              </div>
+              <div class="col s12 l5 offset-l2">
+                <form>
+                  <div class="input-field">
+                    <i class="material-icons prefix">email</i>
+                    <input type="email" id="email">
+                    <label for="email">Your Email</label>
+                  </div>
+                  <div class="input-field">
+                    <i class="material-icons prefix">message</i>
+                    <textarea id="message" class="materialize-textarea" cols="20" rows="20"></textarea>
+                    <label for="message">Your Message</label>
+                  </div>
+                 
+                  <div class="input-field">
+                    
+                  </div>
+                  <div class="input-field center">
+                    <button class="btn">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+
+        
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>    
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+            $('.materialboxed').materialbox();
+            $('.parallax').parallax();
+            $('.modal').modal();
+            $('.scrollspy').scrollSpy();
+        });
+    </script>
+    
+</body>
+</html>
